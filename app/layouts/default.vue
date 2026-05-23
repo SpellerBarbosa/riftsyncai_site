@@ -6,6 +6,9 @@
     
     <!-- Main Content Slot -->
     <slot />
+
+    <!-- Cookie Consent Banner (LGPD) -->
+    <CookieConsent />
   </div>
 </template>
 
