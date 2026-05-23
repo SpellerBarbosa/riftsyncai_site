@@ -263,9 +263,9 @@ onMounted(async () => {
     // Initialize gtag
     const win = window as any;
     win.dataLayer = win.dataLayer || [];
-    function gtag() {
+    const gtag = function (...args: any[]) {
       win.dataLayer.push(arguments);
-    }
+    };
     win.gtag = gtag;
     gtag('js', new Date());
     gtag('config', gaId, { page_path: '/' });
