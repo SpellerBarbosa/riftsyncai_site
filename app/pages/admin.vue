@@ -36,9 +36,6 @@
       <div v-if="loginError" class="mt-4 p-2.5 rounded bg-rose-500/10 border border-rose-500/30 text-rose-400 text-xs font-semibold text-center font-mono">
         {{ loginError }}
       </div>
-      <p class="mt-6 text-center text-[10px] text-gray-500 font-mono">
-        * A senha padrão inicial é "admin". Mude após acessar o painel.
-      </p>
     </div>
 
     <!-- 2. MAIN DASHBOARD CONTENT -->

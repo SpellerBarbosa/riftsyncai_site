@@ -11,7 +11,6 @@ export default defineNitroPlugin(async (nitroApp) => {
       await mongoose.connect(uri, {
         dbName: 'riftsync',
       });
-      console.log('[MongoDB] Conectado com sucesso ao banco de dados.');
     }
   } catch (err) {
     console.error('[MongoDB] Erro ao conectar ao banco de dados:', err);
