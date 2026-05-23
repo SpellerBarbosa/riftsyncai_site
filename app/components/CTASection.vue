@@ -95,10 +95,9 @@ const triggerDownload = async () => {
       downloadsCount.value = res.downloadsCount;
       success.value = true;
       
-      // Trigger a direct 0-byte download of mock exe setup
+      // Trigger the download of the actual app installer from GitHub releases
       const link = document.createElement('a');
-      link.href = 'data:application/octet-stream;base64,';
-      link.download = 'Spell-Coach-AI-Beta-Setup.exe';
+      link.href = 'https://github.com/SpellerBarbosa/riftsyncai/releases/download/v0.2.6/spell-coach-ia_0.1.0_x64-setup.exe';
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
