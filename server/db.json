@@ -1,0 +1,22 @@
+{
+  "downloadsCount": 143,
+  "adminPassword": "admin",
+  "comments": [
+    {
+      "id": "1",
+      "author": "InvocadorBrabo",
+      "content": "A dica de wardar a moita aos 2:40 mudou meu jogo. Consegui prever o gank e ganhei a lane!",
+      "timestamp": "2026-05-18T22:26:56.457Z",
+      "approved": true,
+      "reply": "Ficamos muito felizes em ajudar! Essa ward é clássica e salva muitos jogos contra ganks precoces."
+    },
+    {
+      "id": "2",
+      "author": "MainYasuo007",
+      "content": "Muito bom o timer de cooldown de flash inimigo, ajuda muito nas skirmishes!",
+      "timestamp": "2026-05-19T10:26:56.458Z",
+      "approved": true,
+      "reply": null
+    }
+  ]
+}

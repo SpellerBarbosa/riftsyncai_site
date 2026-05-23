@@ -1,0 +1,30 @@
+export default defineNuxtConfig({
+  compatibilityDate: '2024-04-03',
+  devtools: { enabled: true },
+  devServer: {
+    port: 3001
+  },
+  runtimeConfig: {
+    mongodbUri: process.env.MONGODB_URI || 'mongodb://localhost:27017/riftsync'
+  },
+  modules: [
+    '@nuxtjs/tailwindcss'
+  ],
+  css: ['~/assets/css/main.css'],
+  app: {
+    head: {
+      htmlAttrs: {
+        lang: 'pt-BR'
+      },
+      charset: 'utf-8',
+      viewport: 'width=device-width, initial-scale=1',
+      title: 'Rift Sync AI - Assistente de Voz para LoL e TFT',
+      meta: [
+        { name: 'description', content: 'O seu assistente de voz em tempo real para League of Legends e TFT. Suba de elo com dicas táticas e controle de mapa por meio de voz neural de alta fidelidade.' },
+        { name: 'keywords', content: 'coach league of legends, coach tft, assistente de voz lol, overlay lol, overlay tft, blitz.gg, análise de composição, subir de elo lol' },
+        { name: 'author', content: 'Rift Sync AI' },
+        { name: 'robots', content: 'index, follow' }
+      ]
+    }
+  }
+})
