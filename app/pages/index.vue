@@ -24,7 +24,7 @@
 <script setup lang="ts">
 const title = 'Rift Sync AI - Coach de LoL com Inteligência Artificial | Como Subir de Elo';
 const description = 'Pare de perder rank sem saber o motivo. O Rift Sync AI é um coach de LoL em tempo real movido por inteligência artificial. Melhore seu macro game, controle de visão, timers de flash e suba de elo rápido com dicas táticas por voz neural.';
-const url = 'https://riftsync.ai';
+const url = 'https://riftsyncai.app';
 const keywords = 'coach lol, coach de lol, coach league of legends, inteligência artificial lol, ia lol, coach de lol ia, macro game lol, como subir de elo lol, subir de elo lol, timers flash lol, blitz.gg lol, assistente de voz lol, tauri lol, overlay lol, coach lol gratis, melhor coach lol';
 
 useSeoMeta({
@@ -91,7 +91,7 @@ useHead({
         "@context": "https://schema.org",
         "@type": "Product",
         "name": "Rift Sync AI - Coach de LoL com IA",
-        "image": "https://riftsync.ai/dashboard_preview.png",
+        "image": "https://riftsyncai.app/dashboard_preview.png",
         "description": "O melhor e mais avançado coach de LoL com Inteligência Artificial. Analisa suas partidas em tempo real para ajudar você a subir de elo rápido no League of Legends.",
         "brand": {
           "@type": "Brand",
@@ -99,7 +99,7 @@ useHead({
         },
         "offers": {
           "@type": "Offer",
-          "url": "https://riftsync.ai",
+          "url": "https://riftsyncai.app",
           "priceCurrency": "BRL",
           "price": "0.00",
           "priceValidUntil": "2027-12-31",
@@ -121,20 +121,20 @@ useHead({
         "@graph": [
           {
             "@type": "WebSite",
-            "@id": "https://riftsync.ai/#website",
-            "url": "https://riftsync.ai",
+            "@id": "https://riftsyncai.app/#website",
+            "url": "https://riftsyncai.app",
             "name": "Rift Sync AI",
             "description": "Treinador e Coach de LoL com IA em Tempo Real para subir de elo rápido.",
             "publisher": {
-              "@id": "https://riftsync.ai/#organization"
+              "@id": "https://riftsyncai.app/#organization"
             }
           },
           {
             "@type": "Organization",
-            "@id": "https://riftsync.ai/#organization",
+            "@id": "https://riftsyncai.app/#organization",
             "name": "Rift Sync AI",
-            "url": "https://riftsync.ai",
-            "logo": "https://riftsync.ai/favicon.ico",
+            "url": "https://riftsyncai.app",
+            "logo": "https://riftsyncai.app/favicon.ico",
             "sameAs": [
               "https://github.com/SpellerBarbosa/riftsyncai_site"
             ]
@@ -155,25 +155,25 @@ useHead({
             "@type": "HowToStep",
             "name": "Conecte sua conta Riot",
             "text": "Realize o login de forma 100% segura usando o Riot Sign-On oficial.",
-            "url": "https://riftsync.ai#how-it-works"
+            "url": "https://riftsyncai.app#how-it-works"
           },
           {
             "@type": "HowToStep",
             "name": "A IA analisa suas partidas",
             "text": "A inteligência artificial lê em tempo real os dados de mapa do client do jogo (LCU) de forma autorizada.",
-            "url": "https://riftsync.ai#how-it-works"
+            "url": "https://riftsyncai.app#how-it-works"
           },
           {
             "@type": "HowToStep",
             "name": "Receba feedback inteligente",
             "text": "Ouça dicas táticas contextuais diretamente no seu headset através de voz neural de alta fidelidade.",
-            "url": "https://riftsync.ai#how-it-works"
+            "url": "https://riftsyncai.app#how-it-works"
           },
           {
             "@type": "HowToStep",
             "name": "Evolua mais rápido",
             "text": "Corrija vícios de posicionamento e aumente sua taxa de vitória média.",
-            "url": "https://riftsync.ai#how-it-works"
+            "url": "https://riftsyncai.app#how-it-works"
           }
         ]
       })
