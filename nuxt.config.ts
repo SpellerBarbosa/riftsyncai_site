@@ -28,6 +28,9 @@ export default defineNuxtConfig({
         { name: 'keywords', content: 'coach league of legends, coach tft, assistente de voz lol, overlay lol, overlay tft, blitz.gg, análise de composição, subir de elo lol' },
         { name: 'author', content: 'Rift Sync AI' },
         { name: 'robots', content: 'index, follow' }
+      ],
+      link: [
+        { rel: 'icon', type: 'image/png', href: '/favicon.png' }
       ]
     }
   }
