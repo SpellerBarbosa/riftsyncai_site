@@ -1,18 +1,27 @@
 import Comment from '../models/Comment';
 import { getGlobalStats } from '../models/Stat';
-import { verifyPassword } from '../utils/security';
+import { verifyToken } from '../utils/jwt';
 
 export default defineEventHandler(async (event) => {
   const stats = await getGlobalStats();
-  const authHeader = getHeader(event, 'authorization');
+  const sessionToken = getCookie(event, 'admin_session');
   
   // Sort comments by timestamp (newest first)
   const sortedComments = await Comment.find().sort({ timestamp: -1 });
 
-  // Check if admin password is sent and correct
-  if (authHeader && verifyPassword(authHeader, stats.adminPassword)) {
+  let isAuthorized = false;
+  if (sessionToken) {
+    const payload = verifyToken(sessionToken);
+    if (payload && payload.role === 'admin') {
+      isAuthorized = true;
+    }
+  }
+
+  // Check if admin session is valid
+  if (isAuthorized) {
     return {
       success: true,
+      admin: true,
       comments: sortedComments.map(c => ({
         id: c._id.toString(),
         author: c.author,

@@ -1,16 +1,22 @@
 import Comment from '../models/Comment';
-import { getGlobalStats } from '../models/Stat';
-import { verifyPassword } from '../utils/security';
+import { verifyToken } from '../utils/jwt';
 
 export default defineEventHandler(async (event) => {
-  const authHeader = getHeader(event, 'authorization');
-  const stats = await getGlobalStats();
+  const sessionToken = getCookie(event, 'admin_session');
 
   // Validate admin authorization
-  if (!authHeader || !verifyPassword(authHeader, stats.adminPassword)) {
+  let isAuthorized = false;
+  if (sessionToken) {
+    const payload = verifyToken(sessionToken);
+    if (payload && payload.role === 'admin') {
+      isAuthorized = true;
+    }
+  }
+
+  if (!isAuthorized) {
     throw createError({
       statusCode: 401,
-      statusMessage: 'Não autorizado. Senha inválida.'
+      statusMessage: 'Não autorizado. Sessão inválida ou expirada.'
     });
   }
 

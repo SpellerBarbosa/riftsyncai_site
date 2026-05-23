@@ -5,7 +5,8 @@ export default defineNuxtConfig({
     port: 3001
   },
   runtimeConfig: {
-    mongodbUri: process.env.MONGODB_URI || 'mongodb://localhost:27017/riftsync'
+    mongodbUri: process.env.MONGODB_URI || 'mongodb://localhost:27017/riftsync',
+    jwtSecret: process.env.JWT_SECRET || 'riftsync_default_secret_key_12345!'
   },
   modules: [
     '@nuxtjs/tailwindcss'

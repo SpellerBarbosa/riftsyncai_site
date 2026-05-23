@@ -298,7 +298,6 @@ interface Comment {
 // Authorization states
 const isAuthorized = ref(false);
 const loginPassword = ref('');
-const activePassword = ref('');
 const loading = ref(false);
 const loginError = ref('');
 
@@ -331,33 +330,24 @@ const filteredComments = computed(() => {
   return comments.value;
 });
 
-// Load auth state from session
+// Load auth state from session cookie by fetching data
 onMounted(() => {
-  const cachedPass = window.sessionStorage.getItem('admin_auth_pass');
-  if (cachedPass) {
-    activePassword.value = cachedPass;
-    isAuthorized.value = true;
-    fetchAdminData();
-  }
+  fetchAdminData();
 });
 
 const handleLogin = async () => {
   loading.value = true;
   loginError.value = '';
   try {
-    const data: any = await $fetch('/api/comments', {
-      headers: {
-        Authorization: loginPassword.value
-      }
+    const data: any = await $fetch('/api/login', {
+      method: 'POST',
+      body: { password: loginPassword.value }
     });
 
     if (data && data.success) {
-      activePassword.value = loginPassword.value;
-      window.sessionStorage.setItem('admin_auth_pass', loginPassword.value);
       isAuthorized.value = true;
-      comments.value = data.comments;
-      downloadsCount.value = data.downloadsCount;
       loginPassword.value = '';
+      await fetchAdminData();
     }
   } catch (err: any) {
     loginError.value = err.data?.statusMessage || 'Senha inválida.';
@@ -366,28 +356,30 @@ const handleLogin = async () => {
   }
 };
 
-const handleLogout = () => {
-  window.sessionStorage.removeItem('admin_auth_pass');
-  activePassword.value = '';
+const handleLogout = async () => {
+  try {
+    await $fetch('/api/logout', { method: 'POST' });
+  } catch (err) {
+    console.error('Logout failed:', err);
+  }
   isAuthorized.value = false;
   comments.value = [];
+  downloadsCount.value = 0;
 };
 
 const fetchAdminData = async () => {
   try {
-    const data: any = await $fetch('/api/comments', {
-      headers: {
-        Authorization: activePassword.value
-      }
-    });
-    if (data && data.success) {
+    const data: any = await $fetch('/api/comments');
+    if (data && data.success && data.admin) {
+      isAuthorized.value = true;
       comments.value = data.comments;
       downloadsCount.value = data.downloadsCount;
+    } else {
+      isAuthorized.value = false;
     }
   } catch (err) {
     console.error('Error loading admin data:', err);
-    // If unauthorized, clear session
-    handleLogout();
+    isAuthorized.value = false;
   }
 };
 
@@ -395,9 +387,6 @@ const moderateComment = async (id: string, action: 'approve' | 'delete') => {
   try {
     const res: any = await $fetch('/api/moderate', {
       method: 'POST',
-      headers: {
-        Authorization: activePassword.value
-      },
       body: { id, action }
     });
 
@@ -416,9 +405,6 @@ const submitReply = async (id: string) => {
   try {
     const res: any = await $fetch('/api/moderate', {
       method: 'POST',
-      headers: {
-        Authorization: activePassword.value
-      },
       body: {
         id,
         action: 'reply',
@@ -444,26 +430,17 @@ const changePassword = async () => {
     return;
   }
 
-  if (oldPassword.value !== activePassword.value) {
-    passwordError.value = 'Senha atual incorreta.';
-    return;
-  }
-
   passwordLoading.value = true;
   try {
     const res: any = await $fetch('/api/change-password', {
       method: 'POST',
-      headers: {
-        Authorization: activePassword.value
-      },
       body: {
+        oldPassword: oldPassword.value,
         newPassword: newPassword.value
       }
     });
 
     if (res && res.success) {
-      activePassword.value = newPassword.value;
-      window.sessionStorage.setItem('admin_auth_pass', newPassword.value);
       passwordSuccess.value = true;
       oldPassword.value = '';
       newPassword.value = '';
