@@ -18,7 +18,7 @@ const StatSchema = new mongoose.Schema({
   }
 });
 
-const Stat = mongoose.models.Stat || mongoose.model('Stat', StatSchema);
+const Stat = (mongoose.models.Stat || mongoose.model('Stat', StatSchema)) as mongoose.Model<any>;
 
 // Seeding inicial (se não existir, cria o padrão)
 export async function getGlobalStats() {

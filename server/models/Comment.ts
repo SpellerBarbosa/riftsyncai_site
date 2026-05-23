@@ -31,4 +31,4 @@ const CommentSchema = new mongoose.Schema({
 });
 
 // Verifique se o modelo já existe para evitar erros de recompilação do Nuxt/Nitro
-export default mongoose.models.Comment || mongoose.model('Comment', CommentSchema);
+export default (mongoose.models.Comment || mongoose.model('Comment', CommentSchema)) as mongoose.Model<any>;

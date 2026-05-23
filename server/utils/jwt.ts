@@ -43,7 +43,11 @@ export function verifyToken(token: string): JWTPayload | null {
     const parts = token.split('.');
     if (parts.length !== 3) return null;
 
-    const [header, payload, signature] = parts;
+    const header = parts[0];
+    const payload = parts[1];
+    const signature = parts[2];
+
+    if (!header || !payload || !signature) return null;
     const secret = getSecret();
 
     const expectedSignature = crypto
