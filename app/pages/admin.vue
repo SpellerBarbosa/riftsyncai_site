@@ -279,6 +279,12 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue';
 
+useHead({
+  meta: [
+    { name: 'robots', content: 'noindex, nofollow' }
+  ]
+});
+
 interface Comment {
   id: string;
   author: string;

@@ -1,2 +1,28 @@
 User-Agent: *
-Disallow:
+Allow: /
+Disallow: /admin
+
+# Allow all AI scrapers & crawlers to read the main content
+User-Agent: GPTBot
+Allow: /
+Disallow: /admin
+
+User-Agent: ChatGPT-User
+Allow: /
+Disallow: /admin
+
+User-Agent: ClaudeBot
+Allow: /
+Disallow: /admin
+
+User-Agent: PerplexityBot
+Allow: /
+Disallow: /admin
+
+User-Agent: Google-Extended
+Allow: /
+Disallow: /admin
+
+User-Agent: facebookexternalhit
+Allow: /
+Disallow: /admin

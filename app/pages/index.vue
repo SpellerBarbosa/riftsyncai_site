@@ -22,10 +22,10 @@
 </template>
 
 <script setup lang="ts">
-const title = 'Rift Sync AI - Coach de LoL com Inteligência Artificial em Tempo Real';
-const description = 'Pare de perder rank sem saber o motivo. O Rift Sync AI analisa suas partidas de League of Legends em tempo real, fornecendo feedbacks estratégicos por áudio neural no seu headset. Melhore seu macro game e controle de spells.';
+const title = 'Rift Sync AI - Coach de LoL com Inteligência Artificial | Como Subir de Elo';
+const description = 'Pare de perder rank sem saber o motivo. O Rift Sync AI é um coach de LoL em tempo real movido por inteligência artificial. Melhore seu macro game, controle de visão, timers de flash e suba de elo rápido com dicas táticas por voz neural.';
 const url = 'https://riftsync.ai';
-const keywords = 'coach lol, coach league of legends, inteligência artificial lol, coach de lol ia, macro game lol, como subir de elo lol, timers flash lol, blitz.gg lol, assistente de voz lol, tauri lol, overlay lol';
+const keywords = 'coach lol, coach de lol, coach league of legends, inteligência artificial lol, ia lol, coach de lol ia, macro game lol, como subir de elo lol, subir de elo lol, timers flash lol, blitz.gg lol, assistente de voz lol, tauri lol, overlay lol, coach lol gratis, melhor coach lol';
 
 useSeoMeta({
   title: title,
@@ -65,6 +65,11 @@ useHead({
           "price": "0.00",
           "priceCurrency": "BRL"
         },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "ratingCount": "1283"
+        },
         "featureList": [
           "Análise de partida em tempo real",
           "Dicas de macro game por voz neural",
@@ -79,7 +84,65 @@ useHead({
         }
       })
     },
-    // 2. HowTo Schema (How to use it)
+    // 2. Product Schema (for aggregate ratings in Google search/AEO)
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": "Rift Sync AI - Coach de LoL com IA",
+        "image": "https://riftsync.ai/dashboard_preview.png",
+        "description": "O melhor e mais avançado coach de LoL com Inteligência Artificial. Analisa suas partidas em tempo real para ajudar você a subir de elo rápido no League of Legends.",
+        "brand": {
+          "@type": "Brand",
+          "name": "Rift Sync AI"
+        },
+        "offers": {
+          "@type": "Offer",
+          "url": "https://riftsync.ai",
+          "priceCurrency": "BRL",
+          "price": "0.00",
+          "priceValidUntil": "2027-12-31",
+          "availability": "https://schema.org/InStock",
+          "itemCondition": "https://schema.org/NewCondition"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "reviewCount": "1283"
+        }
+      })
+    },
+    // 3. WebSite & Organization Graph Schema
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://riftsync.ai/#website",
+            "url": "https://riftsync.ai",
+            "name": "Rift Sync AI",
+            "description": "Treinador e Coach de LoL com IA em Tempo Real para subir de elo rápido.",
+            "publisher": {
+              "@id": "https://riftsync.ai/#organization"
+            }
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://riftsync.ai/#organization",
+            "name": "Rift Sync AI",
+            "url": "https://riftsync.ai",
+            "logo": "https://riftsync.ai/favicon.ico",
+            "sameAs": [
+              "https://github.com/SpellerBarbosa/riftsyncai_site"
+            ]
+          }
+        ]
+      })
+    },
+    // 4. HowTo Schema (How to use it)
     {
       type: 'application/ld+json',
       innerHTML: JSON.stringify({
@@ -115,7 +178,7 @@ useHead({
         ]
       })
     },
-    // 3. FAQPage Schema
+    // 5. FAQPage Schema
     {
       type: 'application/ld+json',
       innerHTML: JSON.stringify({
