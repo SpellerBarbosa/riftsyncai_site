@@ -230,4 +230,45 @@ useHead({
     }
   ]
 });
+
+import { onMounted } from 'vue';
+
+onMounted(async () => {
+  // 1. Native visit tracking (with LGPD compliance)
+  try {
+    const visitedKey = 'riftsync_visited';
+    const isUnique = !window.localStorage.getItem(visitedKey);
+    if (isUnique) {
+      window.localStorage.setItem(visitedKey, 'true');
+    }
+
+    await $fetch('/api/track-visit', {
+      method: 'POST',
+      body: { isUnique }
+    });
+  } catch (e) {
+    // Silently ignore tracking errors
+  }
+
+  // 2. Google Analytics integration (if GA_MEASUREMENT_ID is provided)
+  const config = useRuntimeConfig();
+  const gaId = config.public.gaMeasurementId;
+  if (gaId) {
+    // Inject GA script
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${gaId}`;
+    document.head.appendChild(script);
+
+    // Initialize gtag
+    const win = window as any;
+    win.dataLayer = win.dataLayer || [];
+    function gtag() {
+      win.dataLayer.push(arguments);
+    }
+    win.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', gaId, { page_path: '/' });
+  }
+});
 </script>

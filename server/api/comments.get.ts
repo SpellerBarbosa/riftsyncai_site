@@ -31,7 +31,9 @@ export default defineEventHandler(async (event) => {
         approved: c.approved,
         reply: c.reply
       })),
-      downloadsCount: stats.downloadsCount
+      downloadsCount: stats.downloadsCount,
+      visitsCount: stats.visitsCount || 0,
+      uniqueVisitsCount: stats.uniqueVisitsCount || 0
     };
   }
 

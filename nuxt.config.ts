@@ -6,7 +6,10 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     mongodbUri: process.env.MONGODB_URI || 'mongodb://localhost:27017/riftsync',
-    jwtSecret: process.env.JWT_SECRET || 'riftsync_default_secret_key_12345!'
+    jwtSecret: process.env.JWT_SECRET || 'riftsync_default_secret_key_12345!',
+    public: {
+      gaMeasurementId: process.env.GA_MEASUREMENT_ID || ''
+    }
   },
   modules: [
     '@nuxtjs/tailwindcss'

@@ -15,6 +15,14 @@ const StatSchema = new mongoose.Schema({
   downloadsCount: {
     type: Number,
     default: 0
+  },
+  visitsCount: {
+    type: Number,
+    default: 0
+  },
+  uniqueVisitsCount: {
+    type: Number,
+    default: 0
   }
 });
 
@@ -27,7 +35,9 @@ export async function getGlobalStats() {
     stats = await Stat.create({
       settingsId: 'global_settings',
       adminPassword: 'admin',
-      downloadsCount: 0
+      downloadsCount: 0,
+      visitsCount: 0,
+      uniqueVisitsCount: 0
     });
   }
   return stats;

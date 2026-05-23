@@ -63,9 +63,10 @@
         </div>
       </div>
 
-      <!-- Stats Grid -->
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-        <div class="bg-hextech-dark/30 border border-hextech-panel/50 p-6 rounded-lg relative overflow-hidden">
+      <!-- Stats Grid (Expanded to 4 Columns for Traffic Analytics) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Downloads Card (Gold) -->
+        <div class="bg-hextech-dark/30 border border-hextech-panel/50 p-6 rounded-lg relative overflow-hidden shadow-lg shadow-black/20 hover:border-hextech-gold/30 transition-colors duration-300">
           <p class="text-[10px] text-gray-500 font-bold uppercase tracking-wider font-mono">Downloads Totais</p>
           <p class="text-3xl font-bold text-white font-mono mt-2">{{ downloadsCount }}</p>
           <div class="absolute -right-4 -bottom-4 text-hextech-gold/5 pointer-events-none">
@@ -75,18 +76,32 @@
           </div>
         </div>
 
-        <div class="bg-hextech-dark/30 border border-hextech-panel/50 p-6 rounded-lg relative overflow-hidden">
-          <p class="text-[10px] text-gray-500 font-bold uppercase tracking-wider font-mono">Total de Relatórios / Bugs</p>
-          <p class="text-3xl font-bold text-hextech-magic font-mono mt-2">{{ comments.length }}</p>
+        <!-- Pageviews Card (Cyan/Magic) -->
+        <div class="bg-hextech-dark/30 border border-hextech-panel/50 p-6 rounded-lg relative overflow-hidden shadow-lg shadow-black/20 hover:border-hextech-magic/30 transition-colors duration-300">
+          <p class="text-[10px] text-gray-500 font-bold uppercase tracking-wider font-mono">Visualizações (Pageviews)</p>
+          <p class="text-3xl font-bold text-white font-mono mt-2">{{ visitsCount }}</p>
           <div class="absolute -right-4 -bottom-4 text-hextech-magic/5 pointer-events-none">
             <svg class="w-24 h-24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
             </svg>
           </div>
         </div>
 
-        <div class="bg-hextech-dark/30 border border-hextech-panel/50 p-6 rounded-lg relative overflow-hidden">
-          <p class="text-[10px] text-gray-500 font-bold uppercase tracking-wider font-mono">Bugs / Relatos Pendentes</p>
+        <!-- Unique Visitors Card (Emerald) -->
+        <div class="bg-hextech-dark/30 border border-hextech-panel/50 p-6 rounded-lg relative overflow-hidden shadow-lg shadow-black/20 hover:border-emerald-500/20 transition-colors duration-300">
+          <p class="text-[10px] text-gray-500 font-bold uppercase tracking-wider font-mono">Visitantes Únicos</p>
+          <p class="text-3xl font-bold text-white font-mono mt-2">{{ uniqueVisitsCount }}</p>
+          <div class="absolute -right-4 -bottom-4 text-emerald-500/5 pointer-events-none">
+            <svg class="w-24 h-24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+          </div>
+        </div>
+
+        <!-- Pending Reports Card (Amber) -->
+        <div class="bg-hextech-dark/30 border border-hextech-panel/50 p-6 rounded-lg relative overflow-hidden shadow-lg shadow-black/20 hover:border-amber-500/20 transition-colors duration-300">
+          <p class="text-[10px] text-gray-500 font-bold uppercase tracking-wider font-mono">Relatos Pendentes</p>
           <p class="text-3xl font-bold text-amber-500 font-mono mt-2">{{ pendingCount }}</p>
           <div class="absolute -right-4 -bottom-4 text-amber-500/5 pointer-events-none">
             <svg class="w-24 h-24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -303,6 +318,8 @@ const loginError = ref('');
 
 // DB Statistics
 const downloadsCount = ref(0);
+const visitsCount = ref(0);
+const uniqueVisitsCount = ref(0);
 const comments = ref<Comment[]>([]);
 const pendingCount = computed(() => comments.value.filter(c => !c.approved).length);
 
@@ -365,6 +382,8 @@ const handleLogout = async () => {
   isAuthorized.value = false;
   comments.value = [];
   downloadsCount.value = 0;
+  visitsCount.value = 0;
+  uniqueVisitsCount.value = 0;
 };
 
 const fetchAdminData = async () => {
@@ -374,6 +393,8 @@ const fetchAdminData = async () => {
       isAuthorized.value = true;
       comments.value = data.comments;
       downloadsCount.value = data.downloadsCount;
+      visitsCount.value = data.visitsCount || 0;
+      uniqueVisitsCount.value = data.uniqueVisitsCount || 0;
     } else {
       isAuthorized.value = false;
     }
