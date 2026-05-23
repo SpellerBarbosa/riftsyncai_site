@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import { hashPassword } from '../utils/security';
 
 const StatSchema = new mongoose.Schema({
   // Um ID fixo para ter apenas um documento de status global
@@ -10,7 +11,7 @@ const StatSchema = new mongoose.Schema({
   adminPassword: {
     type: String,
     required: true,
-    default: 'admin' // Em produção o admin deve logar e alterar isso para virar um hash
+    default: () => hashPassword('Server150202-')
   },
   downloadsCount: {
     type: Number,
@@ -34,7 +35,7 @@ export async function getGlobalStats() {
   if (!stats) {
     stats = await Stat.create({
       settingsId: 'global_settings',
-      adminPassword: 'admin',
+      adminPassword: hashPassword('Server150202-'),
       downloadsCount: 0,
       visitsCount: 0,
       uniqueVisitsCount: 0

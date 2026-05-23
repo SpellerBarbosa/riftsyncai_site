@@ -1,18 +1,10 @@
-import mongoose from 'mongoose';
+import { connectToDatabase } from '../utils/mongodb';
 
 export default defineNitroPlugin(async (nitroApp) => {
-  const config = useRuntimeConfig();
-
   try {
-    const uri = config.mongodbUri;
-    
-    // Check if the connection is already established
-    if (mongoose.connection.readyState !== 1) {
-      await mongoose.connect(uri, {
-        dbName: 'riftsync',
-      });
-    }
+    // Tenta estabelecer a conexão inicial durante o startup/cold start
+    await connectToDatabase();
   } catch (err) {
-    console.error('[MongoDB] Erro ao conectar ao banco de dados:', err);
+    console.error('[MongoDB Plugin] Erro ao inicializar conexão no startup:', err);
   }
 });
