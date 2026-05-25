@@ -60,11 +60,6 @@ useHead({
         "operatingSystem": "Windows 10, Windows 11",
         "applicationCategory": "GameApplication",
         "description": "Seu coach de League of Legends em tempo real movido por Inteligência Artificial adaptativa. Suba de elo rápido com dicas de macro game, timers de spell e controle de mapa.",
-        "offers": {
-          "@type": "Offer",
-          "price": "0.00",
-          "priceCurrency": "BRL"
-        },
         "aggregateRating": {
           "@type": "AggregateRating",
           "ratingValue": "4.9",
@@ -96,15 +91,6 @@ useHead({
         "brand": {
           "@type": "Brand",
           "name": "Rift Sync AI"
-        },
-        "offers": {
-          "@type": "Offer",
-          "url": "https://riftsyncai.app",
-          "priceCurrency": "BRL",
-          "price": "0.00",
-          "priceValidUntil": "2027-12-31",
-          "availability": "https://schema.org/InStock",
-          "itemCondition": "https://schema.org/NewCondition"
         },
         "aggregateRating": {
           "@type": "AggregateRating",
