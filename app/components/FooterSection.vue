@@ -2,8 +2,6 @@
   <footer class="bg-[#010A13] border-t border-hextech-panel/40 pt-20 pb-10 relative z-10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
-        
-        <!-- Brand -->
         <div class="col-span-1 md:col-span-2">
           <NuxtLink to="/" class="flex items-center space-x-3 group mb-6">
             <div class="w-8 h-8 rounded bg-hextech-dark border border-hextech-gold/30 flex items-center justify-center">
@@ -13,46 +11,37 @@
               RIFT<span class="text-hextech-gold font-light">SYNC</span><span class="text-[10px] ml-1 bg-hextech-magic/10 text-hextech-magic px-1 py-0.5 rounded font-mono border border-hextech-magic/20">AI</span>
             </span>
           </NuxtLink>
-          <p class="text-gray-400 text-xs sm:text-sm max-w-sm leading-relaxed">
-            O assistente de voz e overlay inteligente mais avançado para League of Legends. Desenvolvido para ajudar você a dominar o Rift com dados de nível Desafiante.
-          </p>
+          <p class="text-gray-400 text-xs sm:text-sm max-w-sm leading-relaxed">{{ $t('footer.brandDescription') }}</p>
         </div>
 
-        <!-- Links -->
         <div>
-          <h4 class="text-gray-200 font-extrabold mb-4 uppercase text-xs tracking-widest font-mono">Produto</h4>
+          <h4 class="text-gray-200 font-extrabold mb-4 uppercase text-xs tracking-widest font-mono">{{ $t('footer.product') }}</h4>
           <ul class="space-y-2">
-            <li><a href="#features" class="text-gray-400 hover:text-hextech-magic transition-colors text-xs font-semibold">Recursos</a></li>
-            <li><a href="#dashboard" class="text-gray-400 hover:text-hextech-magic transition-colors text-xs font-semibold">Análise de IA</a></li>
-            <li><a href="#how-it-works" class="text-gray-400 hover:text-hextech-magic transition-colors text-xs font-semibold">Como Funciona</a></li>
-            <li><a href="#cta-final" class="text-gray-400 hover:text-hextech-magic transition-colors text-xs font-semibold">Download Beta</a></li>
+            <li><a href="#features" class="text-gray-400 hover:text-hextech-magic transition-colors text-xs font-semibold">{{ $t('footer.features') }}</a></li>
+            <li><a href="#dashboard" class="text-gray-400 hover:text-hextech-magic transition-colors text-xs font-semibold">{{ $t('footer.aiAnalysis') }}</a></li>
+            <li><a href="#how-it-works" class="text-gray-400 hover:text-hextech-magic transition-colors text-xs font-semibold">{{ $t('footer.howItWorks') }}</a></li>
+            <li><a href="#cta-final" class="text-gray-400 hover:text-hextech-magic transition-colors text-xs font-semibold">{{ $t('footer.downloadBeta') }}</a></li>
           </ul>
         </div>
 
         <div>
-          <h4 class="text-gray-200 font-extrabold mb-4 uppercase text-xs tracking-widest font-mono">Legal</h4>
+          <h4 class="text-gray-200 font-extrabold mb-4 uppercase text-xs tracking-widest font-mono">{{ $t('footer.legal') }}</h4>
           <ul class="space-y-2">
-            <li><a href="#" class="text-gray-400 hover:text-hextech-magic transition-colors text-xs font-semibold">Termos de Serviço</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-hextech-magic transition-colors text-xs font-semibold">Política de Privacidade</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-hextech-magic transition-colors text-xs font-semibold">Conformidade Riot Games</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-hextech-magic transition-colors text-xs font-semibold">{{ $t('footer.terms') }}</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-hextech-magic transition-colors text-xs font-semibold">{{ $t('footer.privacy') }}</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-hextech-magic transition-colors text-xs font-semibold">{{ $t('footer.riotCompliance') }}</a></li>
           </ul>
         </div>
       </div>
 
-      <!-- Compliance Note -->
       <div class="border-t border-hextech-panel/30 pt-8 pb-6 text-center md:text-left">
-        <p class="text-gray-500 text-[10px] sm:text-xs leading-relaxed max-w-5xl">
-          Rift Sync AI não é endossado pela Riot Games e não reflete as visões ou opiniões da Riot Games ou de qualquer pessoa envolvida oficialmente na produção ou gerenciamento de propriedades da Riot Games. League of Legends, TFT e Riot Games são marcas comerciais ou marcas registradas da Riot Games, Inc.
-        </p>
+        <p class="text-gray-500 text-[10px] sm:text-xs leading-relaxed max-w-5xl">{{ $t('footer.disclaimer') }}</p>
       </div>
 
-      <!-- Bottom Bar -->
       <div class="border-t border-hextech-panel/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
         <p class="text-gray-600 text-[10px] font-mono uppercase tracking-wider">
-          &copy; {{ new Date().getFullYear() }} RIFT SYNC AI. TODOS OS DIREITOS RESERVADOS.
+          &copy; {{ new Date().getFullYear() }} {{ $t('footer.copyright') }}
         </p>
-        
-        <!-- Social Icons -->
         <div class="flex space-x-6">
           <a href="#" class="text-gray-500 hover:text-hextech-magic transition-colors">
             <span class="sr-only">Twitter</span>

@@ -15,34 +15,34 @@
         <div class="lg:col-span-6 text-center lg:text-left mb-16 lg:mb-0">
           <div class="inline-flex items-center px-4 py-2 rounded-full bg-hextech-panel/60 border border-hextech-magic/30 text-hextech-magic text-xs font-semibold mb-8 tracking-widest uppercase shadow-[0_0_15px_rgba(10,200,185,0.15)]">
             <span class="flex h-2.5 w-2.5 rounded-full bg-hextech-magic mr-2 animate-ping"></span>
-            V1.0 BETA DISPONÍVEL
+            {{ $t('hero.badge') }}
           </div>
           
           <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 leading-[1.1] text-white">
-            Pare de perder rank <br class="hidden sm:inline" />
+            {{ $t('hero.titleLine1') }} <br class="hidden sm:inline" />
             <span class="text-transparent bg-clip-text bg-gradient-to-r from-hextech-gold to-amber-300">
-              sem saber o motivo.
+              {{ $t('hero.titleLine2') }}
             </span>
           </h1>
           
           <h2 class="text-xl sm:text-2xl font-bold text-gray-300 mb-6 font-sans">
-            Seu coach de League of Legends movido por IA.
+            {{ $t('hero.subtitle') }}
           </h2>
           
           <p class="mt-4 text-base sm:text-lg text-gray-400 mb-10 max-w-xl mx-auto lg:mx-0 leading-relaxed">
-            Dicas táticas adaptativas direto no seu ouvido em tempo real. Corrija seu macro game, saiba o tempo dos feitiços inimigos e evolua sua winrate com análise automatizada de padrões de elo alto.
+            {{ $t('hero.description') }}
           </p>
           
           <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
             <a href="#cta-final" class="px-8 py-4 bg-gradient-to-r from-hextech-gold to-[#a98a4e] text-hextech-darker font-extrabold rounded uppercase tracking-wider hover:from-hextech-goldHover hover:to-hextech-gold transition-all duration-300 shadow-[0_0_25px_rgba(200,170,110,0.35)] hover:shadow-[0_0_35px_rgba(200,170,110,0.55)] transform hover:-translate-y-0.5 text-center">
-              Começar Agora
+              {{ $t('hero.ctaStart') }}
             </a>
             <a href="#dashboard" class="px-8 py-4 bg-hextech-panel/80 text-gray-200 border border-hextech-panel hover:border-hextech-magic/50 font-extrabold rounded uppercase tracking-wider transition-all duration-300 hover:text-hextech-magic flex items-center justify-center gap-2 group transform hover:-translate-y-0.5">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 group-hover:text-hextech-magic transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              Ver Demo
+              {{ $t('hero.ctaDemo') }}
             </a>
           </div>
 
@@ -51,13 +51,13 @@
               <svg class="h-4.5 w-4.5 text-hextech-magic mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
               </svg>
-              100% RIOT COMPLIANT
+              {{ $t('hero.riotCompliant') }}
             </div>
             <div class="flex items-center">
                <svg class="h-4.5 w-4.5 text-hextech-magic mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
               </svg>
-              DICAS HETECH EM TEMPO REAL
+              {{ $t('hero.realtimeTips') }}
             </div>
           </div>
         </div>
@@ -83,7 +83,7 @@
                 </svg>
               </div>
               <div>
-                <p class="text-[10px] text-gray-500 font-bold uppercase tracking-wider">Winrate Média</p>
+                <p class="text-[10px] text-gray-500 font-bold uppercase tracking-wider">{{ $t('hero.avgWinrate') }}</p>
                 <p class="text-sm font-extrabold text-white">+12.4%</p>
               </div>
             </div>
@@ -95,7 +95,7 @@
                 </svg>
               </div>
               <div>
-                <p class="text-[10px] text-gray-500 font-bold uppercase tracking-wider">Partidas Lidas</p>
+                <p class="text-[10px] text-gray-500 font-bold uppercase tracking-wider">{{ $t('hero.matchesRead') }}</p>
                 <p class="text-sm font-extrabold text-white">4.8M+</p>
               </div>
             </div>
@@ -105,4 +105,3 @@
     </div>
   </section>
 </template>
-

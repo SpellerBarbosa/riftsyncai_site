@@ -22,10 +22,22 @@
 </template>
 
 <script setup lang="ts">
-const title = 'Rift Sync AI - Coach de LoL com Inteligência Artificial | Como Subir de Elo';
-const description = 'Pare de perder rank sem saber o motivo. O Rift Sync AI é um coach de LoL em tempo real movido por inteligência artificial. Melhore seu macro game, controle de visão, timers de flash e suba de elo rápido com dicas táticas por voz neural.';
+import { onMounted, computed } from 'vue';
+
+const { t, locale } = useI18n();
 const url = 'https://riftsyncai.app';
-const keywords = 'coach lol, coach de lol, coach league of legends, inteligência artificial lol, ia lol, coach de lol ia, macro game lol, como subir de elo lol, subir de elo lol, timers flash lol, blitz.gg lol, assistente de voz lol, tauri lol, overlay lol, coach lol gratis, melhor coach lol';
+
+const title = computed(() => locale.value === 'pt-BR'
+  ? 'Rift Sync AI - Coach de LoL com Inteligência Artificial | Como Subir de Elo'
+  : 'Rift Sync AI - AI-Powered LoL Coach | How to Climb ELO');
+
+const description = computed(() => locale.value === 'pt-BR'
+  ? 'Pare de perder rank sem saber o motivo. O Rift Sync AI é um coach de LoL em tempo real movido por inteligência artificial. Melhore seu macro game, controle de visão, timers de flash e suba de elo rápido com dicas táticas por voz neural.'
+  : 'Stop losing ranked games without knowing why. Rift Sync AI is a real-time AI-powered LoL coach. Improve your macro game, vision control, flash timers and climb ELO fast with neural voice tactical tips.');
+
+const keywords = computed(() => locale.value === 'pt-BR'
+  ? 'coach lol, coach de lol, coach league of legends, inteligência artificial lol, ia lol, coach de lol ia, macro game lol, como subir de elo lol, subir de elo lol, timers flash lol, blitz.gg lol, assistente de voz lol, tauri lol, overlay lol, coach lol gratis, melhor coach lol'
+  : 'lol coach, league of legends coach, ai lol coach, league of legends ai, macro game lol, how to climb elo lol, climb elo lol, flash timers lol, blitz.gg lol, voice assistant lol, overlay lol, free lol coach, best lol coach');
 
 useSeoMeta({
   title: title,
@@ -43,14 +55,10 @@ useSeoMeta({
 });
 
 useHead({
-  htmlAttrs: {
-    lang: 'pt-BR'
-  },
   link: [
     { rel: 'canonical', href: url }
   ],
   script: [
-    // 1. SoftwareApplication Schema
     {
       type: 'application/ld+json',
       innerHTML: JSON.stringify({
@@ -59,165 +67,71 @@ useHead({
         "name": "Rift Sync AI",
         "operatingSystem": "Windows 10, Windows 11",
         "applicationCategory": "GameApplication",
-        "description": "Seu coach de League of Legends em tempo real movido por Inteligência Artificial adaptativa. Suba de elo rápido com dicas de macro game, timers de spell e controle de mapa.",
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.9",
-          "ratingCount": "1283"
-        },
+        "description": "AI-powered real-time League of Legends coach. Climb ELO fast with macro game tips, spell timers and map control.",
+        "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "ratingCount": "1283" },
         "featureList": [
-          "Análise de partida em tempo real",
-          "Dicas de macro game por voz neural",
-          "Monitoramento de feitiços de invocador inimigos",
-          "Heatmaps de visão e sentinelas recomendadas",
-          "Sugestões adaptativas de builds e counters"
+          "Real-time match analysis",
+          "Neural voice macro game tips",
+          "Enemy summoner spell monitoring",
+          "Vision heatmaps and ward suggestions",
+          "Adaptive build and counter suggestions"
         ],
-        "author": {
-          "@type": "Organization",
-          "name": "Rift Sync AI",
-          "url": url
-        }
+        "author": { "@type": "Organization", "name": "Rift Sync AI", "url": url }
       })
     },
-    // 2. Product Schema (for aggregate ratings in Google search/AEO)
     {
       type: 'application/ld+json',
       innerHTML: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "Product",
-        "name": "Rift Sync AI - Coach de LoL com IA",
+        "name": "Rift Sync AI - AI LoL Coach",
         "image": "https://riftsyncai.app/dashboard_preview.png",
-        "description": "O melhor e mais avançado coach de LoL com Inteligência Artificial. Analisa suas partidas em tempo real para ajudar você a subir de elo rápido no League of Legends.",
-        "brand": {
-          "@type": "Brand",
-          "name": "Rift Sync AI"
-        },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.9",
-          "reviewCount": "1283"
-        }
+        "description": "The most advanced AI-powered LoL coach. Analyzes your matches in real time to help you climb ELO fast in League of Legends.",
+        "brand": { "@type": "Brand", "name": "Rift Sync AI" },
+        "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "1283" }
       })
     },
-    // 3. WebSite & Organization Graph Schema
     {
       type: 'application/ld+json',
       innerHTML: JSON.stringify({
         "@context": "https://schema.org",
         "@graph": [
-          {
-            "@type": "WebSite",
-            "@id": "https://riftsyncai.app/#website",
-            "url": "https://riftsyncai.app",
-            "name": "Rift Sync AI",
-            "description": "Treinador e Coach de LoL com IA em Tempo Real para subir de elo rápido.",
-            "publisher": {
-              "@id": "https://riftsyncai.app/#organization"
-            }
-          },
-          {
-            "@type": "Organization",
-            "@id": "https://riftsyncai.app/#organization",
-            "name": "Rift Sync AI",
-            "url": "https://riftsyncai.app",
-            "logo": "https://riftsyncai.app/favicon.ico",
-            "sameAs": [
-              "https://github.com/SpellerBarbosa/riftsyncai_site"
-            ]
-          }
+          { "@type": "WebSite", "@id": "https://riftsyncai.app/#website", "url": "https://riftsyncai.app", "name": "Rift Sync AI", "description": "Real-time AI LoL Coach and Trainer for fast ELO climbing.", "publisher": { "@id": "https://riftsyncai.app/#organization" } },
+          { "@type": "Organization", "@id": "https://riftsyncai.app/#organization", "name": "Rift Sync AI", "url": "https://riftsyncai.app", "logo": "https://riftsyncai.app/favicon.ico", "sameAs": ["https://github.com/SpellerBarbosa/riftsyncai_site"] }
         ]
       })
     },
-    // 4. HowTo Schema (How to use it)
     {
       type: 'application/ld+json',
       innerHTML: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "HowTo",
-        "name": "Como usar o Rift Sync AI para subir de elo no LoL",
-        "description": "Aprenda a conectar e evoluir sua gameplay de League of Legends com o nosso coach inteligente.",
+        "name": "How to use Rift Sync AI to climb ELO in LoL",
+        "description": "Learn how to connect and evolve your League of Legends gameplay with our intelligent coach.",
         "step": [
-          {
-            "@type": "HowToStep",
-            "name": "Conecte sua conta Riot",
-            "text": "Realize o login de forma 100% segura usando o Riot Sign-On oficial.",
-            "url": "https://riftsyncai.app#how-it-works"
-          },
-          {
-            "@type": "HowToStep",
-            "name": "A IA analisa suas partidas",
-            "text": "A inteligência artificial lê em tempo real os dados de mapa do client do jogo (LCU) de forma autorizada.",
-            "url": "https://riftsyncai.app#how-it-works"
-          },
-          {
-            "@type": "HowToStep",
-            "name": "Receba feedback inteligente",
-            "text": "Ouça dicas táticas contextuais diretamente no seu headset através de voz neural de alta fidelidade.",
-            "url": "https://riftsyncai.app#how-it-works"
-          },
-          {
-            "@type": "HowToStep",
-            "name": "Evolua mais rápido",
-            "text": "Corrija vícios de posicionamento e aumente sua taxa de vitória média.",
-            "url": "https://riftsyncai.app#how-it-works"
-          }
+          { "@type": "HowToStep", "name": "Connect your Riot account", "text": "Log in 100% securely using the official Riot Sign-On.", "url": "https://riftsyncai.app#how-it-works" },
+          { "@type": "HowToStep", "name": "AI analyzes your matches", "text": "The AI reads real-time map data from the game client (LCU) in an authorized manner.", "url": "https://riftsyncai.app#how-it-works" },
+          { "@type": "HowToStep", "name": "Receive intelligent feedback", "text": "Hear contextual tactical tips directly in your headset through high-fidelity neural voice.", "url": "https://riftsyncai.app#how-it-works" },
+          { "@type": "HowToStep", "name": "Improve faster", "text": "Fix positioning habits and increase your average win rate.", "url": "https://riftsyncai.app#how-it-works" }
         ]
       })
     },
-    // 5. FAQPage Schema
     {
       type: 'application/ld+json',
       innerHTML: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "FAQPage",
         "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "O que é o Rift Sync AI?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "O Rift Sync AI é um assistente de voz inteligente e overlay em tempo real para League of Legends que fornece dicas táticas contextuais por meio de voz neural no seu ouvido, ajudando você a tomar melhores decisões estratégicas."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Como a IA analisa minhas partidas?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "A IA lê os logs locais oficiais e telemetria fornecidos pelo jogo de forma nativa e autorizada. Ela processa dados como a posição das sentinelas aliadas/inimigas, cronômetro de monstros neutros e feitiços de invocador adversários gastados."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "O Rift Sync AI funciona para qualquer elo?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Sim, o Rift Sync AI é adaptável e funciona desde o elo Ferro até o Desafiante. As recomendações se ajustam para corrigir as fraquezas mais comuns encontradas em cada nível de habilidade."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Posso melhorar meu macro game com o aplicativo?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Com certeza. O foco principal do assistente de inteligência artificial é aprimorar seu macro game (visão tática global, controle de objetivos e controle de rotas)."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Como subir de rank mais rápido?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Ao eliminar erros repetitivos e aprender a jogar no tempo ideal sugerido pela IA, a sua tomada de decisão melhora consistentemente, resultando no aumento da sua taxa de vitória (winrate)."
-            }
-          }
+          { "@type": "Question", "name": "What is Rift Sync AI?", "acceptedAnswer": { "@type": "Answer", "text": "Rift Sync AI is an intelligent voice assistant and real-time overlay for League of Legends that provides contextual tactical tips through neural voice, helping you make better strategic decisions." } },
+          { "@type": "Question", "name": "How does the AI analyze my matches?", "acceptedAnswer": { "@type": "Answer", "text": "The AI reads official local logs and telemetry provided by the game natively. It processes data such as ward positions, neutral monster timers and spent summoner spells." } },
+          { "@type": "Question", "name": "Does Rift Sync AI work for any rank?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, Rift Sync AI is adaptable and works from Iron to Challenger. Recommendations adjust to correct the most common weaknesses at each skill level." } },
+          { "@type": "Question", "name": "Can I improve my macro game with the app?", "acceptedAnswer": { "@type": "Answer", "text": "Absolutely. The main focus of the AI assistant is to enhance your macro game including global tactical vision, objective control and lane management." } },
+          { "@type": "Question", "name": "How to climb rank faster?", "acceptedAnswer": { "@type": "Answer", "text": "By eliminating repetitive mistakes and learning optimal timing suggested by the AI, your decision-making improves consistently, resulting in increased win rate." } }
         ]
       })
     }
   ]
 });
-
-import { onMounted } from 'vue';
 
 onMounted(async () => {
   // 1. Native visit tracking (with LGPD compliance)

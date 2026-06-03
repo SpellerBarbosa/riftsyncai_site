@@ -12,14 +12,27 @@ export default defineNuxtConfig({
     }
   },
   modules: [
-    '@nuxtjs/tailwindcss'
+    '@nuxtjs/tailwindcss',
+    '@nuxtjs/i18n'
   ],
+  i18n: {
+    locales: [
+      { code: 'pt-BR', name: 'Português', file: 'pt-BR.json' },
+      { code: 'en-US', name: 'English', file: 'en-US.json' }
+    ],
+    defaultLocale: 'pt-BR',
+    lazy: true,
+    langDir: '../i18n/locales/',
+    strategy: 'no_prefix',
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_lang',
+      fallbackLocale: 'pt-BR'
+    }
+  },
   css: ['~/assets/css/main.css'],
   app: {
     head: {
-      htmlAttrs: {
-        lang: 'pt-BR'
-      },
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1',
       title: 'Rift Sync AI - Assistente de Voz para LoL e TFT',

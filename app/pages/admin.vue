@@ -66,6 +66,13 @@
         <div class="bg-hextech-dark/30 border border-hextech-panel/50 p-6 rounded-lg relative overflow-hidden shadow-lg shadow-black/20 hover:border-hextech-gold/30 transition-colors duration-300">
           <p class="text-[10px] text-gray-500 font-bold uppercase tracking-wider font-mono">Downloads Totais</p>
           <p class="text-3xl font-bold text-white font-mono mt-2">{{ downloadsCount }}</p>
+          <button 
+            @click="resetDownloads" 
+            :disabled="resetLoading"
+            class="mt-3 px-2 py-1 bg-rose-500/15 hover:bg-rose-500/25 text-rose-400 text-[9px] uppercase font-bold tracking-widest rounded border border-rose-500/20 transition-colors font-mono"
+          >
+            {{ resetLoading ? 'Resetando...' : 'Zerar Contador' }}
+          </button>
           <div class="absolute -right-4 -bottom-4 text-hextech-gold/5 pointer-events-none">
             <svg class="w-24 h-24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
@@ -320,6 +327,9 @@ const uniqueVisitsCount = ref(0);
 const comments = ref<Comment[]>([]);
 const pendingCount = computed(() => comments.value.filter(c => !c.approved).length);
 
+// Reset downloads state
+const resetLoading = ref(false);
+
 // Change password state
 const oldPassword = ref('');
 const newPassword = ref('');
@@ -471,6 +481,21 @@ const changePassword = async () => {
     passwordError.value = err.data?.statusMessage || 'Erro ao alterar senha.';
   } finally {
     passwordLoading.value = false;
+  }
+};
+
+const resetDownloads = async () => {
+  if (!confirm('Tem certeza que deseja zerar o contador de downloads?')) return;
+  resetLoading.value = true;
+  try {
+    const res: any = await $fetch('/api/reset-downloads', { method: 'POST' });
+    if (res && res.success) {
+      downloadsCount.value = 0;
+    }
+  } catch (err) {
+    console.error('Erro ao resetar downloads:', err);
+  } finally {
+    resetLoading.value = false;
   }
 };
 
