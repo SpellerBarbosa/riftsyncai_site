@@ -79,7 +79,7 @@ const triggerDownload = async () => {
       
       // Trigger the download of the actual app installer from GitHub releases
       const link = document.createElement('a');
-      link.href = 'https://github.com/SpellerBarbosa/riftsyncai/releases/download/v0.3.0/RiftSync.AI_0.3.0_x64-setup.exe';
+      link.href = 'https://github.com/SpellerBarbosa/riftsyncai/releases/download/v0.3.2/RiftSync.AI_0.3.2_x64-setup.exe';
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
